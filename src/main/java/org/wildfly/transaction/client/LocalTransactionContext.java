@@ -260,7 +260,7 @@ public final class LocalTransactionContext implements Contextual<LocalTransactio
         boolean isNew = false;
         if (txn == null) {
             // use LOCAL_TXN_KEY so we can be reasonably assured that there will be no deadlock
-            synchronized (LOCAL_TXN_KEY) {
+            synchronized (transaction) {
                 txn = (LocalTransaction) provider.getResource(transaction, LOCAL_TXN_KEY);
                 if (txn == null) {
                     provider.putResource(transaction, LOCAL_TXN_KEY, txn = new LocalTransaction(this, transaction));
